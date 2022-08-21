@@ -1,0 +1,120 @@
+.main-accordion:not(.accordion) {
+
+
+
+
+}
+
+.main-accordion {
+
+  &:not(.accordion) {
+    counter-reset: li;
+
+
+    [data-content] {
+      max-height: initial;
+      height: initial;
+      overflow: initial;
+      transition: none;
+    }
+
+    .main-accordion__btn {
+      cursor: initial;
+
+      &-icon {
+        display: none;
+      }
+
+      &-title {
+        position: relative;
+
+        &::before {
+          content: counter(li, decimal-leading-zero) "";
+          counter-increment: li;
+          position: absolute;
+          left: 0;
+          transform: translateY(calc(-100% - 2px));
+          font-family: var(--font-family);
+          font-style: normal;
+          font-weight: 800;
+          font-size: 10px;
+          line-height: 12px;
+          text-transform: uppercase;
+          color: var(--color-g);
+        }
+      }
+    }
+
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    grid-gap: 0 30px;
+    width: 100%;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(18px, 1.25vw, 20px);
+    line-height: 105%;
+    text-transform: uppercase;
+    color: var(--color-f);
+    padding: 20px;
+    position: relative;
+    border-bottom: 1px solid transparent;
+    overflow: hidden;
+
+    &-icon {
+      position: relative;
+      transition: all .4s;
+
+      &::before {
+        width: 1px;
+        top: -50px;
+        right: -20px;
+        bottom: -50px;
+        background-color: var(--border-c);
+        position: absolute;
+        content: '';
+      }
+    }
+
+    &-title {
+      text-align: left;
+    }
+
+    &.active {
+      .main-accordion__btn-icon {
+        transform: scaleY(-1);
+      }
+    }
+  }
+
+  &__item {
+    border: 1px solid var(--border-c);
+  }
+
+  &__sublist-item {
+    padding: 20px;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(15px, 1vw, 16px);
+    line-height: 156%;
+    color: var(--color-f);
+    border-top: 1px solid var(--border-c);
+
+    ul,li {
+      list-style-type: disc;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 10px;
+      margin: 15px 0 15px 18px;
+    }
+  }
+}
+
+

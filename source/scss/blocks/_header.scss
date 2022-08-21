@@ -1,0 +1,19 @@
+header {
+  background-color: var(--bg-header);
+}
+
+.header {
+  color: var(--color-a);
+  padding: clamp(20px, 1.875vw, 30px) 0 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: clamp(20px, 1.875vw, 30px);
+  justify-content: space-between;
+
+  &__bottom {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

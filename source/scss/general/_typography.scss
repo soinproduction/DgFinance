@@ -1,0 +1,72 @@
+
+
+.mail-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(233px, 17.063vw, 273px);
+  height: 38px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  font-family: var(--font-family);
+  color: var(--color-a);
+
+  border: 1px solid var(--border-a);
+
+  transition: all 0.4s;
+
+  grid-gap: 11px;
+
+  svg {
+    transition: inherit;
+
+    fill: var(--svg-fill);
+  }
+
+  &:hover {
+    background-color: var(--bg-c);
+
+
+    svg {
+      fill: var(--bg-a);
+    }
+  }
+}
+
+.yellow-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 38px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  font-family: var(--font-family);
+  color: var(--color-b);
+
+  background: var(--bg-d);
+}
+
+.yellow-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 38px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  font-family: var(--font-family);
+  color: var(--color-a);
+
+  background-color: transparent;
+  border: 1px solid var(--border-b);
+}

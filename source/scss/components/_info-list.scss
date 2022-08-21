@@ -1,0 +1,32 @@
+.info-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-gap: 20px;
+
+  svg {
+    fill: var(--svg-fill);
+    transition: all .4s;
+  }
+
+  &__link {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: right;
+    color: var(--color-с);
+    grid-gap: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &:hover {
+      svg {
+        fill: var(--svg-fill-hover);
+        transition: all .4s;
+      }
+    }
+  }
+}
