@@ -1,6 +1,14 @@
 .multirow-slider {
   overflow: initial;
 
+  &--mode {
+    .multirow-slider__link {
+      @include tablet {
+        pointer-events: none;
+      }
+    }
+  }
+
   @include for-laptop {
     .swiper-wrapper {
       display: grid;
@@ -22,12 +30,19 @@
     overflow: hidden;
     max-width: 250px;
 
-
     &:hover {
-
-      .multirow-slider__download {
+      .multirow-slider__hidden {
         transform: translateY(0);
         pointer-events: initial;
+      }
+    }
+
+    @include tablet {
+      &:focus {
+        .multirow-slider__hidden {
+          transform: translateY(0);
+          pointer-events: initial;
+        }
       }
     }
   }
@@ -40,14 +55,59 @@
     min-height: clamp(120px, 11.875vw, 190px);
   }
 
-  &__download {
+  &__hidden {
+    width: 100%;
     position: absolute;
     bottom: 0;
+    border-top: 1px solid var(--border-c);
+    background-color: var(--color-a);
+    z-index: 2;
+    transform: translateY(100%);
+    transition: all .4s;
+    pointer-events: none;
+
+    &-link {
+      font-family: var(--font-family);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 18px;
+      color: var(--color-g);
+
+      @include for-tablet {
+        display: none;
+      }
+    }
+
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      align-items: center;
+      border-top: 0;
+      justify-content: space-around;
+
+
+      &::before {
+        width: 100%;
+        height: 1px;
+        content: '';
+        background-color: var(--border-c);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+    }
+  }
+
+
+
+  &__download {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid var(--border-c);
     padding: 20px 0;
     grid-gap: 10px;
     font-family: var(--font-family);
@@ -57,9 +117,13 @@
     line-height: 18px;
     color: var(--color-g);
     background-color: var(--bg-a);
-    z-index: 2;
-    transform: translateY(100%);
-    transition: all .4s;
-    pointer-events: none;
+
+    svg {
+      fill: var(--bg-c);
+    }
+
+    @include tablet {
+      padding: 0;
+    }
   }
 }

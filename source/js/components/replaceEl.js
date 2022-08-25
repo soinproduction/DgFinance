@@ -1,59 +1,55 @@
-const searchForm = document.querySelector('.catalog-aside__search');
-const myAside = document.querySelector('.catalog-aside');
-const myAsideTitle = myAside?.querySelector('.catalog-aside__title');
-const breakpoint = 1025;
-const breakpointPhone = 576;
-
-const catalogInner = document.querySelector('.catalog-section__title');
+let headerBottom = document.querySelector('.header__bottom');
+let mobileParrent = document.querySelector('.mobile-menu');
+let desktopParrent = document.querySelector('.header');
+let imagesAccordion = document.querySelector('.main-accordion--images');
+let breakpointAccordion = 1024;
 
 
-const fixedNav = document.querySelector('.global-nav');
-const fixedNavMobileParrent = document.querySelector('.navigation-section__top .container');
-const fixedNavDesktopParrent = document.querySelector('.main-slider');
-
-const replaceSearchForm = (element,parentDesktop,parentMobile) => {
+const replaceMobileMenu = (element,parentDesktop,parentMobile) => {
   let containerWidth = document.documentElement.clientWidth;
-  if (containerWidth < breakpoint) {
-    parentMobile.insertAdjacentElement('afterend', element)
+  if (containerWidth <= breakpointAccordion) {
+    parentMobile.insertAdjacentElement('beforeend', element);
   };
-  if (containerWidth >= breakpoint) {
-    parentDesktop.insertAdjacentElement('afterend', element)
+  if (containerWidth > breakpointAccordion) {
+    parentDesktop.insertAdjacentElement('beforeend', element);
   }
 }
 
-if (myAside) {
-  window.addEventListener('resize', () => {
-    replaceSearchForm(searchForm,myAsideTitle,catalogInner);
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    replaceSearchForm(searchForm,myAsideTitle,catalogInner);
-  });
-
-}
-
-if (fixedNav) {
-  window.addEventListener('resize', () => {
-    replaceFixedNav(fixedNav,fixedNavDesktopParrent,fixedNavMobileParrent);
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    replaceFixedNav(fixedNav,fixedNavDesktopParrent,fixedNavMobileParrent);
-  });
-}
+window.addEventListener('resize', () => {
+  replaceMobileMenu(headerBottom,desktopParrent,mobileParrent);
+});
+window.addEventListener('DOMContentLoaded', () => {
+  replaceMobileMenu(headerBottom,desktopParrent,mobileParrent);
+});
 
 
-const replaceFixedNav = (element, parentDesktop, parentMobile) => {
+const replaceAcordionTitle = (element,parentDesktop,parentMobile) => {
   let containerWidth = document.documentElement.clientWidth;
-  if (containerWidth < breakpointPhone) {
-    parentMobile.insertAdjacentElement('afterbegin', element);
-
-    element.removeAttribute('data-aos')
-
+  if (containerWidth <= breakpointAccordion) {
+    parentMobile.insertAdjacentElement('beforeend', element);
   };
-  if (containerWidth >= breakpointPhone) {
-    parentDesktop.insertAdjacentElement('afterbegin', element);
-    element.setAttribute('data-aos','fade-up')
+  if (containerWidth > breakpointAccordion) {
+    parentDesktop.insertAdjacentElement('afterend', element);
   }
 }
+
+if (imagesAccordion) {
+  const imagesAccordionItems = [...imagesAccordion.querySelectorAll('.main-accordion__item')];
+  imagesAccordionItems.map(function(item){
+    const itemButton = item.querySelector('.main-accordion__btn');
+    const itemImage = item.querySelector('.main-accordion__image');
+    const itemTitle = item.querySelector('.main-accordion__btn-title');
+
+    window.addEventListener('resize', () => {
+      replaceAcordionTitle(itemTitle,itemImage,itemButton);
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      replaceAcordionTitle(itemTitle,itemImage,itemButton);
+    });
+  })
+}
+
+
+
+
 

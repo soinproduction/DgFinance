@@ -1,92 +1,99 @@
 import { disableScroll } from '../functions/disable-scroll';
 import { enableScroll } from '../functions/enable-scroll';
 
-const overlay = document.querySelector('[data-menu-overlay]');
-const ageModalBlock = document.querySelector('[data-modal="age"]');
-const regModalBlock = document.querySelector('[data-modal="reg"]');
-const cartModalBlock = document.querySelector('[data-modal="cart"]');
-const closeModalBtns = [...document.querySelectorAll('.close-modal')];
-const showModalReg = [...document.querySelectorAll('[show-modal]')];
-const showModalCart = [...document.querySelectorAll('[show-cart]')];
-const forgotBtn = document.querySelector('[data-forgot]');
+let overlay = document.querySelector('[data-overlay]');
+let propositionModal = document.querySelector('[data-proposition]');
+let propositionBtns = [...document.querySelectorAll('[data-show]')];
+let breakpointTablet = 768;
+let identBtns = [...document.querySelectorAll('[data-ident]')];
+let identBtnsMobile = [...document.querySelectorAll('.ident-mobile  [data-ident]')];
+let identModal = document.querySelector('[data-ident-modal]');
+let identMobileModal = document.querySelector('[data-ident-mobile]');
+let identMobileButtons = [...document.querySelectorAll('a.ident-list__coll')];
 
-let age = localStorage.getItem('age');
+const mobileRemoveClass = function(btns,modalBlock){
+  let containerWidth = document.documentElement.clientWidth;
 
-function hideMobileMenu(){
-  document?.querySelector('[data-burger]').classList.remove('burger--active')
-  document?.querySelector('[data-menu]').classList.remove('mobile-menu--active');
+  if (containerWidth < breakpointTablet) {
+    btns.map(function(button){
+      button.addEventListener('click', function(){
+        modalBlock.classList.remove('active');
+      });
+    });
+  }
 }
 
-if (ageModalBlock) {
 
-  if (age != 18) {
-    document.addEventListener('DOMContentLoaded', ageModal(ageModalBlock))
-  }
-
-  function ageModal(modal){
-    modal.classList.add('active');
-    document.body.classList.add('dis-scroll');
-    document.body.classList.add('modal-overlay');
-
-    modal.addEventListener('click', function(e){
-      if(e.target.classList.contains('age-modal__btn--yes')) {
-        localStorage.setItem('age', '18');
-        modal.classList.remove('active');
-        document.body.classList.remove('dis-scroll');
-        document.body.classList.remove('modal-overlay');
-      }
-    })
-  }
-
-}
-
-showModalReg.map(function(item){
-  item.addEventListener('click', function(e){
-    e.preventDefault();
-    regModalBlock.classList.add('active');
-    overlay.classList.add('active');
-    document.body.classList.remove('dis-scroll');
-    hideMobileMenu()
+const showModal = function(overlayBg, button, modalBlock){
+  button.addEventListener('click', function(){
+    overlayBg.classList.add('active');
+    modalBlock.classList.add('active');
     disableScroll();
   });
-})
+}
 
-closeModalBtns.map(function(btn){
-  btn.addEventListener('click', function(){
-    document.querySelector('[data-modal].active').classList.remove('active');
-    overlay?.classList.remove('active');
-    // document.body.classList.remove('dis-scroll');
-    document.body.classList.remove('modal-overlay');
-    document?.querySelector('[data-burger]').classList.remove('burger--active')
-    document?.querySelector('[data-menu]').classList.remove('mobile-menu--active');
-    enableScroll();
-  })
+const hideModal = function(overlayBg,modalBlock){
+  overlayBg.classList.remove('active');
+  modalBlock.classList.remove('active');
+  enableScroll();
+}
+
+const hideModalHandler = function(parrent) {
+  const closeBtn = parrent.querySelector('.close');
+  closeBtn.addEventListener('click', function(){
+    hideModal(overlay,parrent);
+  });
+}
+
+
+
+window.addEventListener('resize', () => {
+  mobileCheck(identMobileButtons);
+  mobileRemoveClass(identBtnsMobile,identMobileModal);
 });
 
-forgotBtn.onclick = function(){
-  document.querySelector('[data-modal].active').classList.remove('active');
-  document.querySelector('[data-modal="forgot"]').classList.add('active');
-  hideMobileMenu();
-  disableScroll();
+window.addEventListener('DOMContentLoaded', () => {
+  mobileCheck(identMobileButtons);
+  mobileRemoveClass(identBtnsMobile,identMobileModal);
+});
+
+
+const mobileCheck = function(buttons){
+  let containerWidth = document.documentElement.clientWidth;
+
+  if (containerWidth < breakpointTablet) {
+    buttons.map(function(btn){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        showModal(overlay,btn,identMobileModal);
+      })
+    });
+  }
 }
 
-document.querySelector('[data-back]').onclick = function(){
-  document.querySelector('[data-modal="forgot"]').classList.remove('active');
-  regModalBlock.classList.add('active');
-  hideMobileMenu();
-  disableScroll();
+const plunkModalBtns = function(btns,overlayBg ,modalBlock){
+  btns.map(function(btn){
+    showModal(overlayBg,btn,modalBlock);
+  });
+
 }
 
 
-showModalCart.map(function(btn){
-  btn.addEventListener('click', function(){
-    cartModalBlock.classList.add('active');
-    overlay.classList.add('active')
-    hideMobileMenu();
-    disableScroll();
-  })
-})
+if (overlay) {
+  plunkModalBtns(propositionBtns,overlay,propositionModal);
+  plunkModalBtns(identBtns,overlay,identModal);
 
+  hideModalHandler(propositionModal);
+  hideModalHandler(identMobileModal);
+  hideModalHandler(identModal);
+
+  overlay.addEventListener('click', function(e){
+    if (e.target.classList.contains('overlay')) {
+      hideModal(overlay,propositionModal);
+      hideModal(overlay,identModal);
+    }
+  });
+}
 
 
 

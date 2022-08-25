@@ -6,6 +6,10 @@
     margin-bottom: clamp(30px, 3.75vw, 60px);
   }
 
+  &__box {
+    filter: drop-shadow(20px 20px 100px rgba(0, 0, 0, 0.1));
+  }
+
   &__map {
     position: relative;
 

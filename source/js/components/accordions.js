@@ -1,31 +1,15 @@
 
-const indexServices = document.querySelector('.index-services__box');
-const breakpointPhone = 576;
-
-const enableMobileAccordion = (ellement, enableClass) => {
-  let containerWidth = document.documentElement.clientWidth;
-  containerWidth <= breakpointPhone ?
-  ellement.classList.add(enableClass) :
-  ellement.classList.remove(enableClass);
-}
-
-if (indexServices) {
-  window.addEventListener('resize', () => {
-    enableMobileAccordion(indexServices,'accordion');
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    enableMobileAccordion(indexServices,'accordion');
-  });
-}
-
 
 window.addEventListener('DOMContentLoaded', () => {
-  const accordionParrent = document.querySelector('.accordion');
+  let accordionParrent;
 
+  const accParr =  [...document.querySelectorAll('.accordion')]
+
+
+  accParr.map(function(accordionParrent) {
 
     const getAccordions = function(dataName = "[data-id]") {
-      return accordionParrent?.querySelectorAll(dataName);
+      return accordionParrent.querySelectorAll(dataName);
     }
 
     const accordions = getAccordions();
@@ -82,5 +66,9 @@ window.addEventListener('DOMContentLoaded', () => {
     if (accordionParrent) {
       activateAccordion(accordions,accordionClickHandler);
     }
-});
 
+
+
+  });
+
+});

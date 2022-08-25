@@ -38,17 +38,20 @@ import { enableScroll } from './functions/enable-scroll';
 // const tabs = new GraphTabs('tab');
 
 // Получение высоты шапки сайта (не забудьте вызвать функцию)
-import { getHeaderHeight } from './functions/header-height';
+// import { getHeaderHeight } from './functions/header-height';
 
-console.log()
+// console.log()
 
-window.addEventListener("DOMContentLoaded", () => {
-  getHeaderHeight();
-});
+// getHeaderHeight();
 
-window.addEventListener("resize", () => {
-  getHeaderHeight();
-});
+// window.addEventListener("DOMContentLoaded", () => {
+
+// });
+
+
+// window.addEventListener("resize", () => {
+//   getHeaderHeight();
+// });
 
 
 
@@ -77,8 +80,8 @@ window.addEventListener("resize", () => {
 // const rellax = new Rellax('.rellax');
 
 // Подключение плавной прокрутки к якорям
-// import SmoothScroll from 'smooth-scroll';
-// const scroll = new SmoothScroll('a[href*="#"]');
+import SmoothScroll from 'smooth-scroll';
+const scroll = new SmoothScroll('anchor-button');
 
 // Подключение событий свайпа на мобильных
 // import 'swiped-events';

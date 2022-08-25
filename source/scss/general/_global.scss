@@ -14,12 +14,9 @@ body {
   display: flex;
   flex-direction: column;
 
-  @include tablet {
-    width: 100%;
+  width: 100%;
   overflow-x: hidden;
-  }
 }
-
 
 
 footer {
@@ -161,7 +158,7 @@ input[type="number"] {
   z-index: 20;
   max-height: 0;
   overflow: hidden;
-  transition: 0.2s ease-out;
+  transition: 0.2s linear;
 }
 
 [data-tab-content] {
@@ -173,9 +170,14 @@ input[type="number"] {
 }
 
 .dis-scroll {
-  overflow: hidden;
   position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden;
   width: 100%;
+  height: 100vh;
+  overscroll-behavior: none !important;
+  scroll-behavior: none !important;
 }
 
 .lift {
@@ -189,7 +191,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 20;
+  z-index: 10;
   transition: all .4s;
   transform: translateX(-250%);
 
@@ -202,9 +204,43 @@ input[type="number"] {
   }
 }
 
-:root {
-  // --webkit-scrollbar: ;
-  // --webkit-scrollbar-thumb: ;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+  visibility: hidden;
+  z-index: 20;
+  overflow-y: scroll !important;
+  transition: opacity .5s ease;
+  opacity: 0;
+
+
+
+
+  &.active {
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__inner {
+    display: flex;
+    padding: 20px 20px;
+    min-height: -webkit-fill-available;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+
+
+
+    @include mobile {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
 
@@ -212,6 +248,7 @@ input[type="number"] {
   &::-webkit-scrollbar {
     width: 5px;
     height: 7px;
+    display: none;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -246,6 +283,21 @@ fieldset {
 }
 
 
+.modal {
+  opacity: 0;
+  position: absolute;
+  visibility: hidden;
+  transition: all .4s;
+  transition-delay: 0;
+  transform: translateY(-100vh) scale(0);
 
-
+  &.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    transition-delay: .5s;
+    pointer-events: initial;
+  }
+}
 
