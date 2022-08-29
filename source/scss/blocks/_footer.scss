@@ -126,8 +126,13 @@ footer {
   justify-content: center;
   grid-gap: 5px;
 
+
   a {
     text-decoration: underline;
+  }
+
+  br {
+    display: none;
   }
 
 
@@ -136,6 +141,11 @@ footer {
     display: inline-block;
     text-align: center;
     justify-content: center;
+    width: 100%;
+
+    br {
+      display: initial;
+    }
   }
 }
 
