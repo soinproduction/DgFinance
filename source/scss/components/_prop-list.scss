@@ -34,13 +34,10 @@
     line-height: 156%;
     color: var(--color-a);
 
-    a {
+    b {
       display: inline;
       color: var(--color-g);
-
-      &:hover {
-        text-decoration: underline;
-      }
+      font-weight: inherit;
     }
   }
 }

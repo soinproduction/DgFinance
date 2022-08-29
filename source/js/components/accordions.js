@@ -3,6 +3,8 @@
 window.addEventListener('DOMContentLoaded', () => {
   let accordionParrent;
 
+  let breakpointAccordion = 576;
+
   const accParr =  [...document.querySelectorAll('.accordion')]
 
 
@@ -13,6 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     const accordions = getAccordions();
+    let openedAccordion = null;
 
 
     const closeAccordion = function (accordion) {
@@ -44,16 +47,36 @@ window.addEventListener('DOMContentLoaded', () => {
       closeAccordion(accordionContent);
       // openedAccordion = null;
     } else {
-      // if (openedAccordion != null) {
 
-      //   console.log(openedAccordion )
 
-      //   closeAccordion(openedAccordion);
-      //   const accordionButton = document.querySelector(`[data-id="${openedAccordion.dataset.content}"]`)
-      //   toggleAccordionButton(accordionButton);
-      // }
+
+
+      if (openedAccordion != null) {
+        closeAccordion(openedAccordion);
+        const accordionButton = document.querySelector(`[data-id="${openedAccordion.dataset.content}"]`)
+        toggleAccordionButton(accordionButton);
+      }
       openAccordion(accordionContent);
-      // openedAccordion = accordionContent;
+
+
+      const mobileSettings = () => { // multiple or mobile
+        let containerWidth = document.documentElement.clientWidth;
+        if (containerWidth <= breakpointAccordion) {
+          openedAccordion = accordionContent;
+        };
+
+        if (containerWidth > breakpointAccordion) {
+          openedAccordion = null;
+
+        }
+      }
+
+      window.addEventListener('resize', () => {
+        mobileSettings();
+      });
+
+        mobileSettings();
+
     }
   }
 
@@ -66,8 +89,6 @@ window.addEventListener('DOMContentLoaded', () => {
     if (accordionParrent) {
       activateAccordion(accordions,accordionClickHandler);
     }
-
-
 
   });
 

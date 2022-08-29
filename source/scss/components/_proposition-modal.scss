@@ -14,8 +14,8 @@
     &::before {
       position: absolute;
       content: '';
-      top: calc(clamp(10px, 2.778vw, 20px) * -1);
-      bottom: calc(clamp(10px, 2.778vw, 20px) * -1);
+      top: calc(20px * -1);
+      bottom: calc(20px * -1);
       left: 0;
       width: 1px;
       background-color: var(--border-c);
@@ -29,15 +29,11 @@
     border-bottom: 1px solid var(--border-c);
     align-items: center;
     grid-gap: 20px;
-    padding:
-    clamp(10px, 2.778vw, 20px)
-    0
-    clamp(10px, 2.778vw, 20px)
-    clamp(20px, 5.556vw, 40px);
+    padding: 20px 0 20px 20px;
   }
 
   &__inner {
-    padding: 40px clamp(20px, 5.556vw, 40px);
+    padding: 40px;
   }
 
   &__title {

@@ -11,6 +11,13 @@
 
   @include mobile {
     padding: 0;
+
+    &__article {
+      .main-article__image {
+        height: 100vw;
+      }
+    }
+
     .container {
       padding: 0;
     }

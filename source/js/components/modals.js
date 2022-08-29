@@ -9,7 +9,7 @@ let identBtns = [...document.querySelectorAll('[data-ident]')];
 let identBtnsMobile = [...document.querySelectorAll('.ident-mobile  [data-ident]')];
 let identModal = document.querySelector('[data-ident-modal]');
 let identMobileModal = document.querySelector('[data-ident-mobile]');
-let identMobileButtons = [...document.querySelectorAll('a.ident-list__coll')];
+let identMobileButtons = [...document.querySelectorAll('[data-mobile-ident]')];
 
 const mobileRemoveClass = function(btns,modalBlock){
   let containerWidth = document.documentElement.clientWidth;
@@ -25,11 +25,9 @@ const mobileRemoveClass = function(btns,modalBlock){
 
 
 const showModal = function(overlayBg, button, modalBlock){
-  button.addEventListener('click', function(){
     overlayBg.classList.add('active');
     modalBlock.classList.add('active');
     disableScroll();
-  });
 }
 
 const hideModal = function(overlayBg,modalBlock){
@@ -64,7 +62,6 @@ const mobileCheck = function(buttons){
   if (containerWidth < breakpointTablet) {
     buttons.map(function(btn){
       btn.addEventListener('click', function(e){
-        e.preventDefault();
         showModal(overlay,btn,identMobileModal);
       })
     });
@@ -73,7 +70,9 @@ const mobileCheck = function(buttons){
 
 const plunkModalBtns = function(btns,overlayBg ,modalBlock){
   btns.map(function(btn){
-    showModal(overlayBg,btn,modalBlock);
+    btn.addEventListener('click', function(e){
+      showModal(overlayBg,btn,modalBlock);
+    })
   });
 
 }

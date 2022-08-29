@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     grid-gap: 40px;
+    padding: 40px clamp(20px, 5.556vw, 40px);
   }
 
 

@@ -19,6 +19,7 @@
     transition: all .4s;
     position: relative;
     z-index: 5;
+    cursor: pointer;
 
     &:hover {
       color:var(--color-d);

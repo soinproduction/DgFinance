@@ -51,7 +51,7 @@
   color: var(--color-b);
 
   background: var(--bg-d);
-
+  border: 1px solid transparent;
   transition: all .4s;
 
   &:hover {
@@ -108,6 +108,7 @@
 
   svg {
     fill: var(--bg-c);
+    font-size: clamp(16px, 1.504vw, 20px);
   }
 }
 

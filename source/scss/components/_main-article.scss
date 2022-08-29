@@ -56,6 +56,10 @@
       font-size: clamp(15px, 1vw, 16px);
       line-height: 156%;
       color: var(--color-d);
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     @include mobile {
