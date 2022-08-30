@@ -72,6 +72,10 @@ header.active {
     transform: translateX(0%);
   }
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
 
 
   .header__bottom,
