@@ -2171,7 +2171,7 @@ fieldset {
   line-height: 110%;
   text-transform: uppercase;
   color: var(--color-f);
-  padding: 20px 0 18px;
+  padding: 20px 20px 18px;
   position: relative;
   border-bottom: 1px solid transparent;
   overflow: hidden;
