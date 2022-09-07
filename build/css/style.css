@@ -2259,6 +2259,9 @@ fieldset {
     display: none;
   }
 }
+.main-accordion--desktop .main-accordion__btn {
+  border: none;
+}
 @media (min-width: 1240px) {
   .main-accordion--desktop .main-accordion__sublist-item {
     padding-left: 85px;

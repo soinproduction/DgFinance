@@ -138,6 +138,10 @@
       }
     }
 
+    .main-accordion__btn {
+      border: none;
+    }
+
 
     @include for-laptop {
       .main-accordion__sublist-item {
