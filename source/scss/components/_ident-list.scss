@@ -184,21 +184,6 @@
     grid-gap: 10px;
   }
 
-  &__name {
-    min-height: Min(4.511vw,60px);
-    background-color: var(--bg-i);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: var(--font-family);
-    font-style: normal;
-    font-weight: 500;
-    font-size: clamp(14px, 1.278vw, 17px);
-    line-height: 130%;
-    color: var(--color-с);
-  }
-
   &__coll:not(:first-child) {
     position: relative;
 
@@ -256,6 +241,21 @@
         display: none;
       }
     }
+  }
+
+  &__name {
+    min-height: Min(4.511vw,60px);
+    background-color: var(--bg-i);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(14px, 1.278vw, 17px);
+    line-height: 130%;
+    color: var(--color-с);
   }
 
 
