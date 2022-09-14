@@ -161,10 +161,18 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function() {
 
 window.addEventListener('DOMContentLoaded', () => {
-  let accordionParrent;
-  let breakpointAccordion = 576;
   const accParr = [...document.querySelectorAll('.accordion')];
   accParr.map(function (accordionParrent) {
+    let multipleSetting = false;
+    let breakpoinSetting = false;
+    let defaultOpenSetting;
+
+    if (accordionParrent.dataset.single && accordionParrent.dataset.breakpoint) {
+      multipleSetting = accordionParrent.dataset.single; // true - включает сингл аккордион
+
+      breakpoinSetting = accordionParrent.dataset.breakpoint; // брейкпоинт сингл режима (если он true)
+    }
+
     const getAccordions = function () {
       let dataName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "[data-id]";
       return accordionParrent.querySelectorAll(dataName);
@@ -197,35 +205,27 @@ window.addEventListener('DOMContentLoaded', () => {
       const isAccordionOpen = checkIsAccordionOpen(accordionContent);
 
       if (isAccordionOpen) {
-        closeAccordion(accordionContent); // openedAccordion = null;
+        closeAccordion(accordionContent);
+        openedAccordion = null;
       } else {
         if (openedAccordion != null) {
-          closeAccordion(openedAccordion);
-          const accordionButton = document.querySelector("[data-id=\"".concat(openedAccordion.dataset.content, "\"]"));
-          toggleAccordionButton(accordionButton);
+          const mobileSettings = () => {
+            let containerWidth = document.documentElement.clientWidth;
+
+            if (containerWidth <= breakpoinSetting && multipleSetting === 'true') {
+              closeAccordion(openedAccordion);
+              toggleAccordionButton(accordionParrent.querySelector("[data-id=\"".concat(openedAccordion.dataset.content, "\"]")));
+            }
+          };
+
+          window.addEventListener('resize', () => {
+            mobileSettings();
+          });
+          mobileSettings();
         }
 
         openAccordion(accordionContent);
-
-        const mobileSettings = () => {
-          // multiple or mobile
-          let containerWidth = document.documentElement.clientWidth;
-
-          if (containerWidth <= breakpointAccordion) {
-            openedAccordion = accordionContent;
-          }
-
-          ;
-
-          if (containerWidth > breakpointAccordion) {
-            openedAccordion = null;
-          }
-        };
-
-        window.addEventListener('resize', () => {
-          mobileSettings();
-        });
-        mobileSettings();
+        openedAccordion = accordionContent;
       }
     };
 
@@ -235,9 +235,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    if (accordionParrent) {
-      activateAccordion(accordions, accordionClickHandler);
-    }
+    activateAccordion(accordions, accordionClickHandler);
   });
 });
 
