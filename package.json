@@ -32,7 +32,6 @@
     "node-sass": "5.0.0",
     "gulp-svgstore": "7.0.1",
     "gulp-svgmin": "^4.1.0",
-    "gulp-typograf": "^4.0.3",
     "gulp-webp": "^4.0.1",
     "gulp-zip": "^5.1.0",
     "node-w3c-validator": "^2.0.1",
